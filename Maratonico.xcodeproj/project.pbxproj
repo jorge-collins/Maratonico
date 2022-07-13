@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */; };
 		61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */; };
-		61B4A5E6287CC1CE00B81441 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E5287CC1CE00B81441 /* ViewController.swift */; };
+		61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */; };
 		61B4A5E9287CC1CE00B81441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5E7287CC1CE00B81441 /* Main.storyboard */; };
 		61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */; };
 		61B4A5EE287CC1D000B81441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5ED287CC1D000B81441 /* Assets.xcassets */; };
@@ -20,7 +20,7 @@
 		61B4A5DE287CC1CE00B81441 /* Maratonico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maratonico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		61B4A5E5287CC1CE00B81441 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaratonicoTableViewController.swift; sourceTree = "<group>"; };
 		61B4A5E8287CC1CE00B81441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		61B4A5EB287CC1CE00B81441 /* Maratonico.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Maratonico.xcdatamodel; sourceTree = "<group>"; };
 		61B4A5ED287CC1D000B81441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,14 +60,38 @@
 			children = (
 				61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */,
 				61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */,
-				61B4A5E5287CC1CE00B81441 /* ViewController.swift */,
-				61B4A5E7287CC1CE00B81441 /* Main.storyboard */,
+				61B4A5FC287DE62300B81441 /* Models */,
+				61B4A5FB287DE61400B81441 /* Views */,
+				61B4A5FA287DE60400B81441 /* Controllers */,
 				61B4A5ED287CC1D000B81441 /* Assets.xcassets */,
 				61B4A5EF287CC1D000B81441 /* LaunchScreen.storyboard */,
 				61B4A5F2287CC1D000B81441 /* Info.plist */,
 				61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */,
 			);
 			path = Maratonico;
+			sourceTree = "<group>";
+		};
+		61B4A5FA287DE60400B81441 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		61B4A5FB287DE61400B81441 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61B4A5E7287CC1CE00B81441 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		61B4A5FC287DE62300B81441 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */,
-				61B4A5E6287CC1CE00B81441 /* ViewController.swift in Sources */,
+				61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */,
 				61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */,
 				61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */,
 			);
