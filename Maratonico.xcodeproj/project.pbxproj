@@ -66,7 +66,6 @@
 				61B4A5ED287CC1D000B81441 /* Assets.xcassets */,
 				61B4A5EF287CC1D000B81441 /* LaunchScreen.storyboard */,
 				61B4A5F2287CC1D000B81441 /* Info.plist */,
-				61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */,
 			);
 			path = Maratonico;
 			sourceTree = "<group>";
@@ -90,6 +89,7 @@
 		61B4A5FC287DE62300B81441 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
