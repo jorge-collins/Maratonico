@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Selecciona el juego-->
+        <!--Selecciona la pregunta-->
         <scene sceneID="aGE-1l-sMi">
             <objects>
                 <tableViewController id="YVF-GG-8qJ" customClass="MaratonicoTableViewController" customModule="Maratonico" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,11 +30,17 @@
                             <outlet property="delegate" destination="YVF-GG-8qJ" id="p3N-Gm-9VQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Selecciona el juego" id="Iq1-xK-HYp"/>
+                    <navigationItem key="navigationItem" title="Selecciona la pregunta" id="Iq1-xK-HYp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eVN-SU-798">
+                            <connections>
+                                <action selector="addQuestionPressed:" destination="YVF-GG-8qJ" id="VBZ-Oi-ECr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sor-4Q-dmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789.8550724637682" y="93.75"/>
+            <point key="canvasLocation" x="2406" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Hw-9I-ZiA">
@@ -47,12 +53,55 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="YVF-GG-8qJ" kind="relationship" relationship="rootViewController" id="4uz-1C-Jjw"/>
+                        <segue destination="kTb-vk-BUh" kind="relationship" relationship="rootViewController" id="2OE-Ek-yHX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dU6-55-0K6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="94"/>
+            <point key="canvasLocation" x="758" y="94"/>
+        </scene>
+        <!--Tableros disponibles-->
+        <scene sceneID="oad-TO-Wq4">
+            <objects>
+                <tableViewController id="kTb-vk-BUh" customClass="BoardGameViewController" customModule="Maratonico" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="mTp-LT-tgM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoardGameCell" id="W5Z-Tf-hAx">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W5Z-Tf-hAx" id="Wgl-hH-ma0">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kTb-vk-BUh" id="7ml-Pp-973"/>
+                            <outlet property="delegate" destination="kTb-vk-BUh" id="zHV-BW-Zy3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tableros disponibles" id="1RG-a0-zBt">
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="j1R-mD-zsD">
+                            <connections>
+                                <action selector="deleteAllButtonPressed:" destination="kTb-vk-BUh" id="iLE-Gu-8XS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="phP-le-g2f">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="kTb-vk-BUh" id="u9e-uy-Cks"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="YVF-GG-8qJ" kind="show" identifier="goToQuestions" id="OE1-Ob-UeV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tlc-E1-kH6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1578" y="94"/>
         </scene>
     </scenes>
     <resources>

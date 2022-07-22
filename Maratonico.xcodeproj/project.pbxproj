@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61ACB21F288856A800BEB941 /* BoardGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACB21E288856A800BEB941 /* BoardGameViewController.swift */; };
 		61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */; };
 		61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */; };
 		61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61ACB21E288856A800BEB941 /* BoardGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameViewController.swift; sourceTree = "<group>"; };
 		61B4A5DE287CC1CE00B81441 /* Maratonico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maratonico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		61B4A5FA287DE60400B81441 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				61ACB21E288856A800BEB941 /* BoardGameViewController.swift */,
 				61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */,
 			);
 			path = Controllers;
@@ -167,6 +170,7 @@
 			files = (
 				61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */,
 				61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */,
+				61ACB21F288856A800BEB941 /* BoardGameViewController.swift in Sources */,
 				61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */,
 				61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */,
 			);

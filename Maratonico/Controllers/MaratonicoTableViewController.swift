@@ -10,32 +10,82 @@ import CoreData
 
 class MaratonicoTableViewController: UITableViewController {
 
-    let gameArray = ["Clasico", "Literario"]
     var questionArray = [Question]()
     var cardIndex = 0
+
+    var selectedBoardGame : BoardGame? {
+        // Happen as soon as selectedBoardGame gets set with a value
+        didSet {
+            loadQuestions()
+            print(self.selectedBoardGame!.title ?? "")
+        }
+    }
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Obtener la ubicacion de un archivo dentro de la App
-//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
-
-        setInitialValues()
     }
+    
+    
+    @IBAction func addQuestionPressed(_ sender: UIBarButtonItem) {
+        
+        var textFieldQuestion = UITextField()
+        var textFieldAnswer1 = UITextField()
+        var textFieldAnswer2 = UITextField()
+        var textFieldAnswer3 = UITextField()
+        var textFieldCorrectAnswer = UITextField()
+
+        let alert = UIAlertController(title: "Agregar pregunta", message: "", preferredStyle: .alert)
+
+        alert.addTextField { field in
+            textFieldQuestion = field
+            textFieldQuestion.placeholder = "Escribe la pregunta"
+        }
+        alert.addTextField { field in
+            textFieldAnswer1 = field
+            textFieldAnswer1.placeholder = "Respuesta 1"
+        }
+        alert.addTextField { field in
+            textFieldAnswer2 = field
+            textFieldAnswer2.placeholder = "Respuesta 2"
+        }
+        alert.addTextField { field in
+            textFieldAnswer3 = field
+            textFieldAnswer3.placeholder = "Respuesta 3"
+        }
+        alert.addTextField { field in
+            textFieldCorrectAnswer = field
+            textFieldCorrectAnswer.placeholder = "Respuesta correcta [1, 2, 3]"
+        }
+        
+        let actionCancel = UIAlertAction(title: "Cancelar", style: .cancel) { action in
+            self.dismiss(animated: true)
+        }
+        
+        let actionOk = UIAlertAction(title: "Agregar", style: .default) { action in
+            
+            self.addQuestion(q: textFieldQuestion.text!, a1: textFieldAnswer1.text!, a2: textFieldAnswer2.text!, a3: textFieldAnswer3.text!, correctAnswer: textFieldCorrectAnswer.text!)
+        }
+        
+        alert.addAction(actionCancel)
+        alert.addAction(actionOk)
+        
+        present(alert, animated: true)
+    }
+    
 
     //MARK: - Data source methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameArray.count
+        return questionArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
-        cell.textLabel?.text = gameArray[indexPath.row]
+        cell.textLabel?.text = questionArray[indexPath.row].q
         
         return cell
     }
@@ -45,49 +95,32 @@ class MaratonicoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let alert = UIAlertController(title: "¿Como deseas iniciar?", message: "Puedes elegir iniciar desde la primera tarjeta de preguntas o desde donde te quedaste la ultima vez.", preferredStyle: .alert)
-        let alertAction1 = UIAlertAction(title: "Desde el inicio", style: .default) { action in
-            
-            self.cardIndex = 1
-            print(self.cardIndex)
+        let selectedQuestion = questionArray[indexPath.row]
+        
+        let alert = UIAlertController(title: selectedQuestion.q, message: "\(selectedQuestion.a1!)\n\(selectedQuestion.a2!)\n\(selectedQuestion.a3!)\nRespuesta correcta: \(selectedQuestion.correctAnswer!)\nTablero: \(selectedQuestion.parentBoardGame!.title!)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default) { action in
+            self.dismiss(animated: true)
         }
-        let alertAction2 = UIAlertAction(title: "Donde me quedé", style: .default) { action in
-            
-            print("Recuperamos el index desde Core Data y lo asignamos a cardIndex")
-        }
-        alert.addAction(alertAction1)
-        alert.addAction(alertAction2)
+        alert.addAction(alertAction)
 
         present(alert, animated: true, completion: nil)
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     
+    
     //MARK: - Data manipulation
-    
-    
-    func addBoardGame() {
-        
-        // Leer desde el archiivo en csv
-        
-        // Insertar en los arreglos
-        // Board
-        // Cards
-        // Questions
-        
-        // Agregar los valores de acuerdo a lo requerido por la App
-        
-        // Grabar en CoreData
-        
-        print("addBoardGame")
-    }
-
     
     // Recupera todas las preguntas y las almacena en -questionArray-
     func loadQuestions() {
         
         let request: NSFetchRequest<Question> = Question.fetchRequest()
+        
+        let predicate = NSPredicate(format: "parentBoardGame.title MATCHES %@", selectedBoardGame!.title!)
+        
+        request.predicate = predicate
+        
         do {
             questionArray = try context.fetch(request)
         } catch {
@@ -104,54 +137,25 @@ class MaratonicoTableViewController: UITableViewController {
         newQuestion.q = q
         newQuestion.a1 = a1
         newQuestion.a2 = a2
+        newQuestion.a3 = a3
         newQuestion.correctAnswer = correctAnswer
+        newQuestion.parentBoardGame = selectedBoardGame
         
         self.questionArray.append(newQuestion)
+  
+        saveQuestions()
+    }
+    
+    
+    func saveQuestions() {
         
         do {
             try context.save()
         } catch {
-            print("---Error saving question: \(q) | \(error)")
+            print("Error saveQuestions \(error)")
         }
-    }
-    
-    
-    
-    func setInitialValues() {
-
-//        deleteAllEntities()
         
-        loadQuestions()
-//
-//        addQuestion(q: "Edificio mexicano mas alto", a1: "Torre de Pemex", a2: "La Latino", a3: "Bellas artes", correctAnswer: "2")
-//
-//        print("--- \(questionArray.count) Questions after adding 1 more")
-
-//        addBoardGame()
+        tableView.reloadData()
     }
     
-    
-    func deleteAllEntities() {
-        let entities = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.managedObjectModel.entities
-
-        for entity in entities {
-            delete(entityName: entity.name!)
-        }
-    }
-
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
-    func delete(entityName: String) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            try context.execute(deleteRequest)
-//            try persistentContainer.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            debugPrint(error)
-        }
-    }
 }
-
-
-

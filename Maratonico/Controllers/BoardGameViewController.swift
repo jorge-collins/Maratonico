@@ -1,0 +1,161 @@
+//
+//  BoardGameViewController.swift
+//  Maratonico
+//
+//  Created by Jorge Collins Gómez on 20/07/22.
+//
+
+import UIKit
+import CoreData
+
+class BoardGameViewController: UITableViewController {
+    
+    var boardGames = [BoardGame]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+
+        loadBoardGames()
+    }
+
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return boardGames.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardGameCell", for: indexPath)
+        cell.textLabel?.text = boardGames[indexPath.row].title
+        
+        return cell
+    }
+
+    
+    //MARK: - Data manipulation methods
+    
+    func saveBoardGames() {
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saveBoardGames \(error)")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    
+    func loadBoardGames() {
+            
+        let request: NSFetchRequest<BoardGame> = BoardGame.fetchRequest()
+        
+        do {
+            boardGames = try context.fetch(request)
+        } catch {
+            print("Error loadBoardGames \(error)")
+        }
+        
+        tableView.reloadData()
+    }
+    
+    //MARK: - Delete all boards and questions
+    
+    @IBAction func deleteAllButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: "Confirmar", message: "Se borraran todos los tableros y preguntas", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "Cancelar", style: .cancel) { action in
+            self.dismiss(animated: true)
+        }
+        let actionConfirm = UIAlertAction(title: "Ok", style: .default) { action in
+            self.deleteAllEntities()
+            self.loadBoardGames()
+        }
+        alert.addAction(actionCancel)
+        alert.addAction(actionConfirm)
+        present(alert, animated: true)
+    }
+    
+    //MARK: - Add new board game
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Agregar tablero", message: "", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "Cancelar", style: .cancel) { action in
+            self.dismiss(animated: true)
+        }
+        let action = UIAlertAction(title: "Agregar", style: .default) { action in
+        
+            let newBoardGame = BoardGame(context: self.context)
+            newBoardGame.title = textField.text!
+            newBoardGame.currentIndex = "0"
+            
+            self.boardGames.append(newBoardGame)
+            self.saveBoardGames()
+        }
+        
+        alert.addAction(action)
+        alert.addAction(actionCancel)
+        
+        alert.addTextField { field in
+            textField = field
+            textField.placeholder = "Agregar un nuevo tablero"
+        }
+        
+        present(alert, animated: true)
+    }
+    
+    
+    //MARK: - Delegate methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "goToQuestions", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! MaratonicoTableViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedBoardGame = boardGames[indexPath.row]
+        }
+    }
+    
+    
+    //MARK: - Delete all data methods
+    
+    func deleteAllEntities() {
+        let entities = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.managedObjectModel.entities
+
+        for entity in entities {
+            delete(entityName: entity.name!)
+        }
+    }
+
+    func delete(entityName: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            debugPrint(error)
+        }
+    }
+
+}
