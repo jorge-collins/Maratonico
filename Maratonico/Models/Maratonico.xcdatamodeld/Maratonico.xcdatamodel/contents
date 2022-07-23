@@ -9,12 +9,15 @@
         <attribute name="a1" optional="YES" attributeType="String"/>
         <attribute name="a2" optional="YES" attributeType="String"/>
         <attribute name="a3" optional="YES" attributeType="String"/>
+        <attribute name="cardId" optional="YES" attributeType="String"/>
         <attribute name="correctAnswer" attributeType="String"/>
         <attribute name="q" attributeType="String"/>
+        <attribute name="qNumber" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="theme" optional="YES" attributeType="String"/>
         <relationship name="parentBoardGame" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoardGame" inverseName="questions" inverseEntity="BoardGame"/>
     </entity>
     <elements>
         <element name="BoardGame" positionX="-201.0546875" positionY="-97.6875" width="128" height="88"/>
-        <element name="Question" positionX="71.45703125" positionY="-102.30078125" width="128" height="133"/>
+        <element name="Question" positionX="71.45703125" positionY="-102.30078125" width="128" height="178"/>
     </elements>
 </model>

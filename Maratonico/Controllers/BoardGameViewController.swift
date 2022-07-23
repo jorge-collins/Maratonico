@@ -64,6 +64,10 @@ class BoardGameViewController: UITableViewController {
             
         let request: NSFetchRequest<BoardGame> = BoardGame.fetchRequest()
         
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        request.sortDescriptors = [sortDescriptor]
+        
         do {
             boardGames = try context.fetch(request)
         } catch {
