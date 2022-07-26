@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class BoardGameViewController: UITableViewController {
     
@@ -19,10 +20,9 @@ class BoardGameViewController: UITableViewController {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.clearsSelectionOnViewWillAppear = false
+        
+        tableView.rowHeight = 60.0
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
 
@@ -39,8 +39,11 @@ class BoardGameViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardGameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BoardGameCell", for: indexPath) as! SwipeTableViewCell
+        
         cell.textLabel?.text = boardGames[indexPath.row].title
+        
+        cell.delegate = self
         
         return cell
     }
@@ -56,7 +59,8 @@ class BoardGameViewController: UITableViewController {
             print("Error saveBoardGames \(error)")
         }
         
-        tableView.reloadData()
+        // Cargamos desde CoreData para que se ordene cada que se actualiza
+        loadBoardGames()
     }
     
     
@@ -64,7 +68,8 @@ class BoardGameViewController: UITableViewController {
             
         let request: NSFetchRequest<BoardGame> = BoardGame.fetchRequest()
         
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        // Agregando el selector los ordena sin importar si estan en mayusculas o minusculas
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
         
         request.sortDescriptors = [sortDescriptor]
         
@@ -162,4 +167,42 @@ class BoardGameViewController: UITableViewController {
         }
     }
 
+}
+
+//MARK: - Swipe cell methods
+
+extension BoardGameViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        guard orientation == .right else { return nil }
+
+        let deleteAction = SwipeAction(style: .destructive, title: "Eliminar") { action, indexPath in
+            // handle action by updating model with deletion
+            print("--- item borrado")
+            
+            self.context.delete(self.boardGames[indexPath.row])
+            self.boardGames.remove(at: indexPath.row)
+
+            do {
+                try self.context.save()
+            } catch {
+                print("Error saveBoardGames \(error)")
+            }
+        }
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+
+        return [deleteAction]
+    }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        return options
+    }
+    
 }
