@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		61479870288CF86100DDCDA8 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6147986F288CF86100DDCDA8 /* SwipeCellKit */; };
+		61479872288FBEA300DDCDA8 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */; };
 		61ACB21F288856A800BEB941 /* BoardGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACB21E288856A800BEB941 /* BoardGameViewController.swift */; };
 		61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */; };
 		61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		61ACB21E288856A800BEB941 /* BoardGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameViewController.swift; sourceTree = "<group>"; };
 		61B4A5DE287CC1CE00B81441 /* Maratonico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maratonico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				61ACB21E288856A800BEB941 /* BoardGameViewController.swift */,
 				61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */,
+				61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */,
 				61ACB21F288856A800BEB941 /* BoardGameViewController.swift in Sources */,
 				61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */,
+				61479872288FBEA300DDCDA8 /* SwipeTableViewController.swift in Sources */,
 				61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

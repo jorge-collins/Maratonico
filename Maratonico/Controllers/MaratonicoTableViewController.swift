@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class MaratonicoTableViewController: UITableViewController {
+class MaratonicoTableViewController: SwipeTableViewController {
 
     var questionArray = [Question]()
     var cardIndex = 0
@@ -17,7 +17,7 @@ class MaratonicoTableViewController: UITableViewController {
         // Happen as soon as selectedBoardGame gets set with a value
         didSet {
             loadQuestions()
-            print(self.selectedBoardGame!.title ?? "")
+            cardIndex = Int(selectedBoardGame!.currentIndex!) ?? 0
         }
     }
     
@@ -108,7 +108,7 @@ class MaratonicoTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = questionArray[indexPath.row].q
         
         return cell
@@ -182,7 +182,20 @@ class MaratonicoTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
-        print("--- \(questionArray.count) Questions loaded")
+        // print("--- \(questionArray.count) Questions loaded")
+    }
+    
+    
+    override func updateModel(at indexPath: IndexPath) {
+        
+        context.delete(questionArray[indexPath.row])
+        questionArray.remove(at: indexPath.row)
+        
+        do {
+            try self.context.save()
+        } catch {
+            print("Error saveQuestions \(error)")
+        }
     }
 }
 
