@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		61479870288CF86100DDCDA8 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6147986F288CF86100DDCDA8 /* SwipeCellKit */; };
 		61479872288FBEA300DDCDA8 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */; };
+		61ABD4992893244F00F40B6B /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 61ABD4982893244F00F40B6B /* SwipeCellKit */; };
 		61ACB21F288856A800BEB941 /* BoardGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACB21E288856A800BEB941 /* BoardGameViewController.swift */; };
 		61B4A5E2287CC1CE00B81441 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E1287CC1CE00B81441 /* AppDelegate.swift */; };
 		61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5E3287CC1CE00B81441 /* SceneDelegate.swift */; };
@@ -17,9 +17,11 @@
 		61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */; };
 		61B4A5EE287CC1D000B81441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5ED287CC1D000B81441 /* Assets.xcassets */; };
 		61B4A5F1287CC1D000B81441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5EF287CC1D000B81441 /* LaunchScreen.storyboard */; };
+		823078A498B1010258F82C0D /* Pods_Maratonico.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09C8BAD7EFCD556B14F56785 /* Pods-Maratonico.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maratonico.debug.xcconfig"; path = "Target Support Files/Pods-Maratonico/Pods-Maratonico.debug.xcconfig"; sourceTree = "<group>"; };
 		61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		61ACB21E288856A800BEB941 /* BoardGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardGameViewController.swift; sourceTree = "<group>"; };
 		61B4A5DE287CC1CE00B81441 /* Maratonico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maratonico.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +33,8 @@
 		61B4A5ED287CC1D000B81441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61B4A5F0287CC1D000B81441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61B4A5F2287CC1D000B81441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maratonico.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEADE4C68966751136E428DA /* Pods-Maratonico.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maratonico.release.xcconfig"; path = "Target Support Files/Pods-Maratonico/Pods-Maratonico.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,18 +42,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61479870288CF86100DDCDA8 /* SwipeCellKit in Frameworks */,
+				61ABD4992893244F00F40B6B /* SwipeCellKit in Frameworks */,
+				823078A498B1010258F82C0D /* Pods_Maratonico.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0A1447291A2EFAA0D26D10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09C8BAD7EFCD556B14F56785 /* Pods-Maratonico.debug.xcconfig */,
+				AEADE4C68966751136E428DA /* Pods-Maratonico.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		61B4A5D5287CC1CE00B81441 = {
 			isa = PBXGroup;
 			children = (
 				61B4A5E0287CC1CE00B81441 /* Maratonico */,
 				61B4A5DF287CC1CE00B81441 /* Products */,
+				0C0A1447291A2EFAA0D26D10 /* Pods */,
+				F6BC7AE8284E6EA0EDD87748 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +118,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		F6BC7AE8284E6EA0EDD87748 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61B4A5F5287CC1D000B81441 /* Build configuration list for PBXNativeTarget "Maratonico" */;
 			buildPhases = (
+				BFCA511093057DD3FFDE00C2 /* [CP] Check Pods Manifest.lock */,
 				61B4A5DA287CC1CE00B81441 /* Sources */,
 				61B4A5DB287CC1CE00B81441 /* Frameworks */,
 				61B4A5DC287CC1CE00B81441 /* Resources */,
+				EF33DDE7D7A088D5CE68A1BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -119,7 +145,7 @@
 			);
 			name = Maratonico;
 			packageProductDependencies = (
-				6147986F288CF86100DDCDA8 /* SwipeCellKit */,
+				61ABD4982893244F00F40B6B /* SwipeCellKit */,
 			);
 			productName = Maratonico;
 			productReference = 61B4A5DE287CC1CE00B81441 /* Maratonico.app */;
@@ -150,7 +176,7 @@
 			);
 			mainGroup = 61B4A5D5287CC1CE00B81441;
 			packageReferences = (
-				6147986E288CF86100DDCDA8 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				61ABD4972893244F00F40B6B /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = 61B4A5DF287CC1CE00B81441 /* Products */;
 			projectDirPath = "";
@@ -173,6 +199,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFCA511093057DD3FFDE00C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Maratonico-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF33DDE7D7A088D5CE68A1BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Maratonico/Pods-Maratonico-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Maratonico/Pods-Maratonico-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Maratonico/Pods-Maratonico-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61B4A5DA287CC1CE00B81441 /* Sources */ = {
@@ -326,6 +394,7 @@
 		};
 		61B4A5F6287CC1D000B81441 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09C8BAD7EFCD556B14F56785 /* Pods-Maratonico.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -354,6 +423,7 @@
 		};
 		61B4A5F7287CC1D000B81441 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEADE4C68966751136E428DA /* Pods-Maratonico.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -404,7 +474,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6147986E288CF86100DDCDA8 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+		61ABD4972893244F00F40B6B /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
 			requirement = {
@@ -415,9 +485,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6147986F288CF86100DDCDA8 /* SwipeCellKit */ = {
+		61ABD4982893244F00F40B6B /* SwipeCellKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6147986E288CF86100DDCDA8 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			package = 61ABD4972893244F00F40B6B /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
 			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */

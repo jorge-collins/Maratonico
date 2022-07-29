@@ -7,9 +7,12 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 class MaratonicoTableViewController: SwipeTableViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var questionArray = [Question]()
     var cardIndex = 0
 
@@ -18,6 +21,9 @@ class MaratonicoTableViewController: SwipeTableViewController {
         didSet {
             loadQuestions()
             cardIndex = Int(selectedBoardGame!.currentIndex!) ?? 0
+            
+            navigationItem.title = selectedBoardGame?.title
+            
         }
     }
     
@@ -26,6 +32,13 @@ class MaratonicoTableViewController: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        searchBar.barTintColor = FlatForestGreen().lighten(byPercentage: 0.5)
+        navigationController?.navigationBar.tintColor = ContrastColorOf(FlatForestGreen(), returnFlat: true)
     }
     
     

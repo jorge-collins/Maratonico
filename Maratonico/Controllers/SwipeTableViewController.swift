@@ -16,6 +16,10 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         tableView.rowHeight = 60.0
     }
     
+   
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     //MARK: - Table view datasource methods
     

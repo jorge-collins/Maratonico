@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 class BoardGameViewController: SwipeTableViewController {
     
@@ -21,11 +22,22 @@ class BoardGameViewController: SwipeTableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
+        tableView.separatorStyle = .none
+        
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
 
         loadBoardGames()
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        guard let navBar = navigationController?.navigationBar else { fatalError("No existe navigationController.")}
+        navBar.backgroundColor = UIColor.flatForestGreen()
+        navBar.tintColor = ContrastColorOf(UIColor.flatForestGreen(), returnFlat: true)
+    }
 
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,6 +50,12 @@ class BoardGameViewController: SwipeTableViewController {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = boardGames[indexPath.row].title
+        
+        if let colour = FlatGreen().darken(byPercentage: CGFloat(indexPath.row) / CGFloat(boardGames.count*4) ) {
+            
+            cell.backgroundColor = colour
+            cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+        }
         
         return cell
     }
@@ -144,6 +162,8 @@ class BoardGameViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         performSegue(withIdentifier: "goToQuestions", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
