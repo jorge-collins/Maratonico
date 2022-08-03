@@ -25,6 +25,9 @@ class BoardGameViewController: SwipeTableViewController {
         tableView.separatorStyle = .none
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+        
+        let resultLoadCSV = loadCSV(from: "Clasico")
+        print(#line, "resultLoadCSV: \(resultLoadCSV)")
 
         loadBoardGames()
     }
