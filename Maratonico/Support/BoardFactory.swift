@@ -11,19 +11,16 @@ var columnCount: Int = 0
 
 func loadCSV(from csvName: String) -> Int {
     
-    guard let filePath = Bundle.main.path(forResource: csvName, ofType: "csv") else {
-        print("No existe el archivo")
-        return 0
-    }
+    guard let filePath = Bundle.main.path(forResource: csvName, ofType: "csv") else { return 0 }
     
     // convert content to a very long string
     var data = ""
     do { data = try String(contentsOfFile: filePath) } catch { return 0 }
     // splits the long string into an array of rows
     var rows = data.components(separatedBy: "\n")
+
     // count the number of headers
     columnCount = (rows.first?.components(separatedBy: ",").count)!
-    
     // Remove headers
     rows.removeFirst()
 
@@ -33,14 +30,14 @@ func loadCSV(from csvName: String) -> Int {
         // Si esta vacio, salte
         guard rowArray != [] else { continue }
 
-        // Guardamos el renglon en CoreData
-//        print("addQuestion(a1:String, a2:String, a3:String, cardId:String, correctAnswer:String, q:String, qNumber:Float, theme:String)")
-
-        print(#line, rowArray)
-//        // TODO: Recuperamos el renglon procesado
+        // TODO: Agregamos cada pregunta al context
+        // addQuestion(a1:String, a2:String, a3:String, cardId:String, correctAnswer:String, q:String, qNumber:Float, theme:String)")
 
     }
-    
+    // TODO: Agregamos el boardGame al context
+
+    // TODO: Guardamos en CoreData
+
     return 1
 }
 
@@ -76,14 +73,35 @@ func proccessRow(with row: String) -> [String] {
         result = [cardId, qNumber, theme, q, answers[0], answers[1], answers[2], answers[3]]
         
     } else {
-        // TODO: Procesamos las variantes
-//        print(comaRow.count)
-//        print(#function, #line, comaRow)
+        // Procesamos las variantes
+        var valuesArray: [String] = []
+        var value: String = ""
+        var doubleC = false
+        for (index, r) in row.enumerated() {
 
+            if r != "," || r != "\"" {
+                value.append(r)
+            }
+            
+            if r == "," || index == row.count - 1 {
+                guard !doubleC else { continue }
+                value = value.trimmingCharacters(in: [" ", ",", "\r", "\""])
+                valuesArray.append(value)
+                value = ""
+            }
+            
+            if r == "\"" {
+                doubleC = !doubleC
+            }
+        }
+        // Seteamos las respuestas
+        answers = setAnswers(with: [valuesArray[4], valuesArray[5], valuesArray[6]])
+        
+        result = [valuesArray[0], valuesArray[1], valuesArray[2], valuesArray[3], answers[0], answers[1], answers[2], answers[3]]
     }
 
     // Regresa [ cardId, qNumber, theme, q, a1, a2, a3, correctAnswer ]
-//    print(#line, result)
+    print(#line, result)
     return result
 }
 
@@ -141,4 +159,19 @@ func getComaValues(with str: String) -> [String] {
     }
     
     return result
+}
+
+
+
+//MARK: - String custom methods
+extension String {
+    
+    func slice(from: String, to: String) -> String? {
+        return (from.isEmpty ? startIndex..<startIndex : range(of: from)).flatMap { fromRange in
+            (to.isEmpty ? endIndex..<endIndex : range(of: to, range: fromRange.upperBound..<endIndex)).map({ toRange in
+                String(self[fromRange.upperBound..<toRange.lowerBound])
+            })
+        }
+    }
+
 }
