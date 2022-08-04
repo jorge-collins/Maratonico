@@ -16,25 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="AvP-Wg-yjG">
-                                <rect key="frame" x="-201" y="46.5" width="816" height="803"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-logo" translatesAutoresizingMaskIntoConstraints="NO" id="JwI-Kf-bON">
+                                <rect key="frame" x="60" y="301" width="294" height="294"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="294" id="TOm-Lc-cQZ"/>
+                                    <constraint firstAttribute="height" constant="294" id="u5k-Io-t36"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maratonico" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="OY4-bh-MrT">
-                                <rect key="frame" x="20" y="418.5" width="374" height="59.5"/>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="48"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="2" height="1"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OY4-bh-MrT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="JOj-Yf-Tej"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OY4-bh-MrT" secondAttribute="trailing" constant="20" id="JVt-ng-dx1"/>
-                            <constraint firstItem="OY4-bh-MrT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Kyb-xW-2n1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JwI-Kf-bON" secondAttribute="trailing" constant="60" id="QAP-Lq-ybm"/>
+                            <constraint firstItem="JwI-Kf-bON" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="TYT-S7-BVE"/>
+                            <constraint firstItem="JwI-Kf-bON" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xyS-J9-sGA"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="815.66668701171875" height="803.33331298828125"/>
+        <image name="launch-logo" width="341.33334350585938" height="341.33334350585938"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

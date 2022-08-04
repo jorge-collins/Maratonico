@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 var columnCount: Int = 0
+
+let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
 func loadCSV(from csvName: String) -> Int {
     
@@ -24,6 +27,11 @@ func loadCSV(from csvName: String) -> Int {
     // Remove headers
     rows.removeFirst()
 
+    // Creamos el BoardGame
+    let newBoardGame = BoardGame(context: context)
+    newBoardGame.title = csvName
+    newBoardGame.currentIndex = "0"
+
     for row in rows {
         // Procesamos el renglon para convertirlo en un array de strings
         let rowArray = proccessRow(with: row)
@@ -31,13 +39,28 @@ func loadCSV(from csvName: String) -> Int {
         guard rowArray != [] else { continue }
 
         // TODO: Agregamos cada pregunta al context
+        let newQuestion = Question(context: context)
+        newQuestion.a1 = rowArray[4]
+        newQuestion.a2 = rowArray[5]
+        newQuestion.a3 = rowArray[6]
+        newQuestion.cardId = rowArray[0]
+        newQuestion.correctAnswer = rowArray[7]
+        newQuestion.q = rowArray[3]
+        newQuestion.qNumber = Float(rowArray[1])!
+        newQuestion.theme = rowArray[2]
+        newQuestion.parentBoardGame = newBoardGame
         // addQuestion(a1:String, a2:String, a3:String, cardId:String, correctAnswer:String, q:String, qNumber:Float, theme:String)")
 
     }
-    // TODO: Agregamos el boardGame al context
 
     // TODO: Guardamos en CoreData
-
+    do {
+        try context.save()
+    } catch {
+        print(#line, "Error in \(#function) \(error)")
+        return 0
+    }
+    
     return 1
 }
 
@@ -101,7 +124,7 @@ func proccessRow(with row: String) -> [String] {
     }
 
     // Regresa [ cardId, qNumber, theme, q, a1, a2, a3, correctAnswer ]
-    print(#line, result)
+//    print(#line, result)
     return result
 }
 

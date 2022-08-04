@@ -18,16 +18,14 @@ class BoardGameViewController: SwipeTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
         
         tableView.separatorStyle = .none
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
-        
-        let resultLoadCSV = loadCSV(from: "Clasico")
-        print(#line, "resultLoadCSV: \(resultLoadCSV)")
+        // Descomentar la siguiente linea para obtener la ubicacion de la DB
+        // print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!)
+        // Descomentar las siguientes lineas subir los datos a la DB
+        // let resultLoadCSV = loadCSV(from: "Clasico")
+        // print(#line, "resultLoadCSV: \(resultLoadCSV)")
 
         loadBoardGames()
     }
