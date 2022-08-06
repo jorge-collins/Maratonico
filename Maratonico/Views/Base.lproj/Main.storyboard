@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,7 +52,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sor-4Q-dmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2406" y="94"/>
+            <point key="canvasLocation" x="2504" y="-597"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Hw-9I-ZiA">
@@ -110,15 +111,76 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="YVF-GG-8qJ" kind="show" identifier="goToQuestions" id="OE1-Ob-UeV"/>
+                        <segue destination="nVO-ZW-Id4" kind="show" identifier="goToDicee" id="vap-lD-409"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlc-E1-kH6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1578" y="94"/>
         </scene>
+        <!--Dicee View Controller-->
+        <scene sceneID="gEe-gJ-ovT">
+            <objects>
+                <viewController id="nVO-ZW-Id4" customClass="DiceeViewController" customModule="Maratonico" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wnU-zm-arc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreenBackground" translatesAutoresizingMaskIntoConstraints="NO" id="iYS-0K-pPn">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DiceFive" translatesAutoresizingMaskIntoConstraints="NO" id="BVG-ez-2fV">
+                                <rect key="frame" x="80" y="208" width="254" height="254"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="BVG-ez-2fV" secondAttribute="height" multiplier="120:120" id="Ozq-4z-BsJ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUR-A8-n5r">
+                                <rect key="frame" x="117" y="742" width="180" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="b86-QF-W7d"/>
+                                    <constraint firstAttribute="height" constant="60" id="vNR-hu-zlo"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Tirar dado">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" red="0.55686277149999996" green="0.1607843041" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="Verdana" family="Verdana" pointSize="28"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="rollDiceePressed:" destination="nVO-ZW-Id4" eventType="touchUpInside" id="ZT3-kX-4SS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lac-BZ-qfg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="iYS-0K-pPn" firstAttribute="leading" secondItem="wnU-zm-arc" secondAttribute="leading" id="8xa-C1-tjF"/>
+                            <constraint firstAttribute="bottom" secondItem="iYS-0K-pPn" secondAttribute="bottom" id="Arb-0I-dbd"/>
+                            <constraint firstItem="BVG-ez-2fV" firstAttribute="top" secondItem="lac-BZ-qfg" secondAttribute="top" constant="120" id="Faq-Gz-cBx"/>
+                            <constraint firstItem="iYS-0K-pPn" firstAttribute="top" secondItem="wnU-zm-arc" secondAttribute="top" id="Oph-3n-3j1"/>
+                            <constraint firstItem="lac-BZ-qfg" firstAttribute="trailing" secondItem="BVG-ez-2fV" secondAttribute="trailing" constant="80" id="eVO-PE-ggp"/>
+                            <constraint firstItem="BVG-ez-2fV" firstAttribute="leading" secondItem="lac-BZ-qfg" secondAttribute="leading" constant="80" id="egV-51-tCT"/>
+                            <constraint firstItem="lac-BZ-qfg" firstAttribute="bottom" secondItem="CUR-A8-n5r" secondAttribute="bottom" constant="60" id="fG6-Ua-BhU"/>
+                            <constraint firstItem="CUR-A8-n5r" firstAttribute="centerX" secondItem="wnU-zm-arc" secondAttribute="centerX" id="qWk-EB-NeS"/>
+                            <constraint firstAttribute="trailing" secondItem="iYS-0K-pPn" secondAttribute="trailing" id="toj-Zf-fZy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="SXV-WM-eyT"/>
+                    <connections>
+                        <outlet property="diceeImageView" destination="BVG-ez-2fV" id="Onn-qB-DeZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jyf-Rz-2ba" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2502.898550724638" y="93.75"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="DiceFive" width="100" height="100"/>
+        <image name="GreenBackground" width="444.5" height="414"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

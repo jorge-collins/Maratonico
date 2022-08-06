@@ -162,15 +162,20 @@ class BoardGameViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "goToQuestions", sender: self)
+//        performSegue(withIdentifier: "goToQuestions", sender: self)
+        performSegue(withIdentifier: "goToDicee", sender: self)
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destinationVC = segue.destination as! MaratonicoTableViewController
-        
+//        let destinationVC = segue.destination as! MaratonicoTableViewController
+//
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//            destinationVC.selectedBoardGame = boardGames[indexPath.row]
+//        }
+        let destinationVC = segue.destination as! DiceeViewController
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedBoardGame = boardGames[indexPath.row]
         }
