@@ -19,6 +19,7 @@
 		61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61B4A5EA287CC1CE00B81441 /* Maratonico.xcdatamodeld */; };
 		61B4A5EE287CC1D000B81441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5ED287CC1D000B81441 /* Assets.xcassets */; };
 		61B4A5F1287CC1D000B81441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5EF287CC1D000B81441 /* LaunchScreen.storyboard */; };
+		61BC4E3328A2101A00D30BC4 /* Multimedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BC4E3228A2101A00D30BC4 /* Multimedia.swift */; };
 		61C819CF289B50A400391897 /* DiceeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C819CE289B50A400391897 /* DiceeViewController.swift */; };
 		61C819D1289EFA8300391897 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C819D0289EFA8200391897 /* QuestionViewController.swift */; };
 		823078A498B1010258F82C0D /* Pods_Maratonico.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */; };
@@ -39,6 +40,7 @@
 		61B4A5ED287CC1D000B81441 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		61B4A5F0287CC1D000B81441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61B4A5F2287CC1D000B81441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61BC4E3228A2101A00D30BC4 /* Multimedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multimedia.swift; sourceTree = "<group>"; };
 		61C819CE289B50A400391897 /* DiceeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceeViewController.swift; sourceTree = "<group>"; };
 		61C819D0289EFA8200391897 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maratonico.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +74,7 @@
 			children = (
 				61B4A5ED287CC1D000B81441 /* Assets.xcassets */,
 				61ABD4A72899A38C00F40B6B /* BoardFactory.swift */,
+				61BC4E3228A2101A00D30BC4 /* Multimedia.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BC4E3328A2101A00D30BC4 /* Multimedia.swift in Sources */,
 				61B4A5EC287CC1CE00B81441 /* Maratonico.xcdatamodeld in Sources */,
 				61ABD4A82899A38C00F40B6B /* BoardFactory.swift in Sources */,
 				61B4A5E6287CC1CE00B81441 /* MaratonicoTableViewController.swift in Sources */,

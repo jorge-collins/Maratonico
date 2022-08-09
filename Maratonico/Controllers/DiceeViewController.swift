@@ -7,6 +7,8 @@
 
 import UIKit
 import CoreData
+//import AVFoundation
+
 
 class DiceeViewController: UIViewController {
     
@@ -47,6 +49,7 @@ class DiceeViewController: UIViewController {
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
+        print("questionArray.count: \(questionArray.count)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,15 +86,17 @@ class DiceeViewController: UIViewController {
             cardIDsArray.remove(at: cardIDsArray.firstIndex(of: currentCardId)!)
 
             // Mostrar alert con el numero que salio en el dado
-            let alert = UIAlertController(title: "Pregunta numero \(self.diceTitleArray[randomNumber].lowercased())", message: "", preferredStyle: .actionSheet)
-
+            let alert = UIAlertController(title: "Categoría: \"\(currentQuestion.theme!)\"", message: "Pregunta número \(self.diceTitleArray[randomNumber].lowercased())", preferredStyle: .actionSheet)
+        
             // Crear action para notificar el resultado del dado y la categoria
-            let alertAction = UIAlertAction(title: "Categoria: \"\(currentQuestion.theme!)\"", style: .default) { action in
+            let alertAction = UIAlertAction(title: "Leer pregunta", style: .default) { action in
                 self.performSegue(withIdentifier: "goToQuestion", sender: self)
             }
             
             alert.addAction(alertAction)
             present(alert, animated: true)
+            
+            siriSpeak(with: "Categoría \(currentQuestion.theme!)")
         }
     }
     
@@ -145,6 +150,15 @@ class DiceeViewController: UIViewController {
         cardIDsArray = arrWithoutDuplicates
     }
     
+//    
+//    func siriSpeak(with string: String) {
+//        
+//        let utterance = AVSpeechUtterance(string: string)
+//        utterance.voice = AVSpeechSynthesisVoice(language: "es-MX")
+//
+//        let synth = AVSpeechSynthesizer()
+//        synth.speak(utterance)
+//    }
 }
 
 

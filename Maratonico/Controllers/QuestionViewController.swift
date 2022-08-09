@@ -37,6 +37,8 @@ class QuestionViewController: UIViewController {
         
         // Agregamos la funcionalidad al boton de mostrar opciones
         showOptionsButton.addTarget(self, action: #selector(showButtons), for: .touchUpInside)
+        
+        siriSpeak(with: (currentQuestion?.q)!!)
     }
     
     // MARK: - Actions
@@ -48,6 +50,7 @@ class QuestionViewController: UIViewController {
         UIView.animate(withDuration: 0.5) {
             sender.alpha = 0.0
         }
+        siriSpeak(with: "opción uno: \((currentQuestion?.a1)!!), opción dos: \((currentQuestion?.a2)!!), opción tres: \((currentQuestion?.a3)!!)")
     }
     
     @IBAction func verifyAnswer(_ sender: UIButton) {
