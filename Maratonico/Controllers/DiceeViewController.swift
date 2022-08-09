@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreData
-//import AVFoundation
 
 
 class DiceeViewController: UIViewController {
@@ -150,15 +149,6 @@ class DiceeViewController: UIViewController {
         cardIDsArray = arrWithoutDuplicates
     }
     
-//    
-//    func siriSpeak(with string: String) {
-//        
-//        let utterance = AVSpeechUtterance(string: string)
-//        utterance.voice = AVSpeechSynthesisVoice(language: "es-MX")
-//
-//        let synth = AVSpeechSynthesizer()
-//        synth.speak(utterance)
-//    }
 }
 
 
