@@ -21,9 +21,9 @@ class DiceeViewController: UIViewController {
             cardIndex = Int(selectedBoardGame!.currentIndex!) ?? 0
 
             navigationItem.title = selectedBoardGame?.title
-            
         }
     }
+    
     // Array de unicamente los ids de las tarjetas
     var cardIDsArray: [String] = []
     // Array donde se almancenan las preguntas de la tarjeta actual
@@ -44,7 +44,9 @@ class DiceeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,19 +59,56 @@ class DiceeViewController: UIViewController {
         let randomNumber = Int.random(in: 0...5)
         let currentCardId = cardIDsArray.randomElement()!
         let currentQNumber = String(randomNumber + 1)
-        print(#line, diceTitleArray[randomNumber], currentCardId, currentQNumber)
         
-        diceeImageView.image = UIImage(named: diceArray[randomNumber])
+        // Animacion de tiro del dado
+        for index in 0...5 {
+            Timer.scheduledTimer(withTimeInterval: 0.02 * Double(index), repeats: false) { timer in
+                self.diceeImageView.image = UIImage(named: self.diceArray[index])
+            }
+        }
+        // Animacion que tarda mas que la animacion anterior y muestra el verdadero resultado
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { timer in
+            self.diceeImageView.image = UIImage(named: self.diceArray[randomNumber])
+        }
         
         let request: NSFetchRequest<Question> = Question.fetchRequest()
         request.predicate = NSPredicate(format: "cardId MATCHES %@ AND qNumber = %@", currentCardId, currentQNumber)
-
         do {
             cardQuestions = try context.fetch(request)
         } catch { print(#line, "--- Error fetching questions \(error)") }
 
         if let currentQuestion = cardQuestions.first {
-            print(#line, currentQuestion.cardId!, currentQuestion.qNumber, currentQuestion.q!)
+            
+            // Eliminar el cardId del arreglo para que no vuelva a salir en el random
+            cardIDsArray.remove(at: cardIDsArray.firstIndex(of: currentCardId)!)
+
+            // Mostrar alert con el numero que salio en el dado
+            let alert = UIAlertController(title: "Pregunta numero \(self.diceTitleArray[randomNumber].lowercased())", message: "", preferredStyle: .actionSheet)
+
+            // Crear action para notificar el resultado del dado y la categoria
+            let alertAction = UIAlertAction(title: "Categoria: \"\(currentQuestion.theme!)\"", style: .default) { action in
+                self.performSegue(withIdentifier: "goToQuestion", sender: self)
+            }
+            
+            alert.addAction(alertAction)
+            present(alert, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "goToQuestion" {
+            
+            let destinationVC = segue.destination as! QuestionViewController
+            if let currentQuestion = cardQuestions.first {
+                destinationVC.currentQuestion = currentQuestion
+            }
+        }
+        
+        if segue.identifier == "goToEdit" {
+            if let destinationVC = segue.destination as? MaratonicoTableViewController {
+                destinationVC.selectedBoardGame = selectedBoardGame
+            }
         }
     }
     
@@ -106,4 +145,13 @@ class DiceeViewController: UIViewController {
         cardIDsArray = arrWithoutDuplicates
     }
     
+}
+
+
+// Para eliminar el texto en el boton -back- de los VCs que se muestren a partir de este
+extension UIViewController {
+    open override func awakeAfter(using coder: NSCoder) -> Any? {
+        navigationItem.backButtonDisplayMode = .minimal // This will help us to remove text
+        return super.awakeAfter(using: coder)
+    }
 }

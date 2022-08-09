@@ -20,6 +20,7 @@
 		61B4A5EE287CC1D000B81441 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5ED287CC1D000B81441 /* Assets.xcassets */; };
 		61B4A5F1287CC1D000B81441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B4A5EF287CC1D000B81441 /* LaunchScreen.storyboard */; };
 		61C819CF289B50A400391897 /* DiceeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C819CE289B50A400391897 /* DiceeViewController.swift */; };
+		61C819D1289EFA8300391897 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C819D0289EFA8200391897 /* QuestionViewController.swift */; };
 		823078A498B1010258F82C0D /* Pods_Maratonico.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		61B4A5F0287CC1D000B81441 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		61B4A5F2287CC1D000B81441 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61C819CE289B50A400391897 /* DiceeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceeViewController.swift; sourceTree = "<group>"; };
+		61C819D0289EFA8200391897 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		6DD4DD5EB0663DEBCB46D232 /* Pods_Maratonico.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Maratonico.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEADE4C68966751136E428DA /* Pods-Maratonico.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maratonico.release.xcconfig"; path = "Target Support Files/Pods-Maratonico/Pods-Maratonico.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				61B4A5E5287CC1CE00B81441 /* MaratonicoTableViewController.swift */,
 				61479871288FBEA300DDCDA8 /* SwipeTableViewController.swift */,
 				61C819CE289B50A400391897 /* DiceeViewController.swift */,
+				61C819D0289EFA8200391897 /* QuestionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				61C819CF289B50A400391897 /* DiceeViewController.swift in Sources */,
 				61479872288FBEA300DDCDA8 /* SwipeTableViewController.swift in Sources */,
 				61B4A5E4287CC1CE00B81441 /* SceneDelegate.swift in Sources */,
+				61C819D1289EFA8300391897 /* QuestionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

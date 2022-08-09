@@ -170,11 +170,6 @@ class BoardGameViewController: SwipeTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        let destinationVC = segue.destination as! MaratonicoTableViewController
-//
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.selectedBoardGame = boardGames[indexPath.row]
-//        }
         let destinationVC = segue.destination as! DiceeViewController
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.selectedBoardGame = boardGames[indexPath.row]
