@@ -25,7 +25,10 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var speakerQuestion: UIButton!
     
     @IBOutlet weak var questionTextLabel: UILabel!
+    
+    @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var showOptionsButton: UIButton!
+    @IBOutlet weak var responseButton: UIButton!
     
     @IBOutlet weak var speakerOptions: UIButton!
     @IBOutlet weak var optionAButton: UIButton!
@@ -67,10 +70,37 @@ class QuestionViewController: UIViewController {
     }
     
     @IBAction func showOptionsPressed(_ sender: UIButton) {
+        showOptions()
+    }
+    
+    func showOptions() {
         UIView.animate(withDuration: 0.5) {
-            sender.alpha = 0.0
+            self.buttonsStackView.alpha = 0.0
             self.speakerOptions.alpha = 1.0
         }
+    }
+    
+    @IBAction func responsePressed(_ sender: UIButton) {
+        
+        // Mostrar alert con el numero que salio en el dado
+        let alert = UIAlertController(title: "Escribe tu respuesta", message: "", preferredStyle: .alert)
+        let alertActionCancel = UIAlertAction(title: "Cancelar", style: .cancel)
+
+        // Crear action para notificar el resultado del dado y la categoria
+        var textFieldAnswer = UITextField()
+        alert.addTextField { field in
+            textFieldAnswer = field
+            textFieldAnswer.placeholder = "Respuesta"
+        }
+        let alertAction = UIAlertAction(title: "Enviar", style: .default) { action in
+            self.verifyTextAnswer(with: textFieldAnswer.text!)
+        }
+        
+        alert.addAction(alertAction)
+        alert.addAction(alertActionCancel)
+        present(alert, animated: true)
+        
+        print(#line, currentQuestion!)
     }
     
     @IBAction func speakerOptionsPressed(_ sender: UIButton) {
@@ -81,19 +111,60 @@ class QuestionViewController: UIViewController {
     @IBAction func verifyAnswer(_ sender: UIButton) {
         
         if !questionAnswered {
-//            sender.setTitleColor(.systemYellow, for: .normal)
             
-            let attrFont = UIFont(name: "Verdana Bold", size: 18)
-
-            let attrTitle = NSAttributedString(string: (sender.titleLabel?.text)!, attributes: [NSAttributedString.Key.font: attrFont!])
-            sender.setAttributedTitle(attrTitle, for: UIControl.State.normal)
-            
+            changeButtonFont(at: sender)
             questionAnswered = !questionAnswered
         }
         updateUI()
     }
     
+    func changeButtonFont(at sender: UIButton) {
+        let attrFont = UIFont(name: "Verdana Bold", size: 18)
+        let attrTitle = NSAttributedString(string: (sender.titleLabel?.text)!, attributes: [NSAttributedString.Key.font: attrFont!])
+        sender.setAttributedTitle(attrTitle, for: UIControl.State.normal)
+    }
     
+    // Verifica la respuesta directa
+    func verifyTextAnswer(with answer: String) {
+        
+        var cAnswerIndex: Int = 0
+        if let cAnswer = currentQuestion?.correctAnswer {
+            cAnswerIndex = Int(cAnswer)! - 1
+        }
+        
+        let answersData = [currentQuestion?.a1, currentQuestion?.a2, currentQuestion?.a3]
+        
+        let correctAnswer = answersData[cAnswerIndex]!
+        
+        guard (answer.count * 2) > (correctAnswer.count) else {
+            print("Respuesta demasiado corta")
+            notifyInvalidAnswer(with: "Respuesta demasiado corta")
+            return
+        }
+        
+        let upperCA = correctAnswer.uppercased()
+        let upperA = answer.uppercased()
+        
+        print(correctAnswer)
+        
+        if upperCA.contains(upperA) {
+            print("Respuesta valida")
+            showOptions()
+            showButtons()
+            updateUI()
+        } else {
+            notifyInvalidAnswer(with: "Respuesta invalida")
+        }
+    }
+    
+    func notifyInvalidAnswer(with str: String) {
+        let alert = UIAlertController(title: str, message: "", preferredStyle: .actionSheet)
+        let alertAction = UIAlertAction(title: "Ok", style: .default)
+
+        alert.addAction(alertAction)
+        present(alert, animated: true)
+
+    }
     // MARK: - Animations methods
     
     func updateUI() {

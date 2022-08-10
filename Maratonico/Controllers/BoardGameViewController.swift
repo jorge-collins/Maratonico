@@ -31,6 +31,7 @@ class BoardGameViewController: SwipeTableViewController {
         if boardGames.count == 0 {
             let resultLoadCSV = loadCSV(from: "Clasico")
             print(#line, "resultLoadCSV: \(resultLoadCSV)")
+            loadBoardGames()
         }
         print(#line, boardGames.count)
 
